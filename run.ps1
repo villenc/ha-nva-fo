@@ -147,7 +147,7 @@ Function Start-Failover
     }
   }
 
-  Send-AlertMessage -message "NVA Alert: Failover to Secondary FW2"
+#  Send-AlertMessage -message "NVA Alert: Failover to Secondary FW2"
 
 }
 
@@ -189,7 +189,7 @@ Function Start-Failback
     }
   }
 
-  Send-AlertMessage -message "NVA Alert: Failback to Primary FW1"
+#  Send-AlertMessage -message "NVA Alert: Failback to Primary FW1"
 
 }
 
@@ -329,7 +329,7 @@ elseif (-not ($FW1Down) -and ($FW2Down))
 elseif (($FW1Down) -and ($FW2Down))
 {
   Write-Output -InputObject 'Both FW1 and FW2 Down - Manual recovery action required'
-  Send-AlertMessage -message "NVA Alert: Both FW1 and FW2 Down - Manual recovery action is required"
+ # Send-AlertMessage -message "NVA Alert: Both FW1 and FW2 Down - Manual recovery action is required"
 }
 else
 {
