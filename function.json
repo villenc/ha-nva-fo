@@ -5,8 +5,8 @@
       "type": "timerTrigger",
       "direction": "in",
       "schedule": "*/30 * * * * *"
-      "runOnStartup":true	
     }
   ],
   "disabled": false
+  "runOnStartup":true
 }
