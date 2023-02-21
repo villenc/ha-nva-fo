@@ -26,4 +26,4 @@ jobs:
           app-name: 'failover-vMX'
           slot-name: 'Production'
           package: ${{ env.AZURE_FUNCTIONAPP_PACKAGE_PATH }}
-          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_EB60882AEB5D4301BACB51A99048B9E8 }}
+          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_B44FC70F4346405C960EFF09D822EC78 }}
