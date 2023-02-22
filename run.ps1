@@ -43,7 +43,7 @@
 #--------------------------------------------------------------------------
 
 # Input bindings are passed in via param block.
-param($myTimer)
+param($Timer)
 
 # Get the current universal time in the default string format.
 $currentUTCtime = (Get-Date).ToUniversalTime()
