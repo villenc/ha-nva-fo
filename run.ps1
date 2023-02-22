@@ -87,15 +87,15 @@ $IntSleep = $env:FWDELAY       # Delay in seconds between tries
 # Code blocks for supporting functions
 #--------------------------------------------------------------------------
 
-Function Send-AlertMessage ($Message)
-{
-    $MailServers = (Resolve-DnsName -Type MX -Name $env:FWMAILDOMAINMX).NameExchange
-    $MailFrom = $env:FWMAILFROM
-    $MailTo = $env:FWMAILTO
-
-    try { Send-MailMessage -SmtpServer $MailServers[1] -From $MailFrom -To $MailTo -Subject $Message -Body $Message }
-    catch { Send-MailMessage -SmtpServer $MailServers[2] -From $MailFrom -To $MailTo -Subject $Mesage -Body $Message }
-}
+#Function Send-AlertMessage ($Message)
+#{
+#    $MailServers = (Resolve-DnsName -Type MX -Name $env:FWMAILDOMAINMX).NameExchange
+#    $MailFrom = $env:FWMAILFROM
+#    $MailTo = $env:FWMAILTO
+#
+#    try { Send-MailMessage -SmtpServer $MailServers[1] -From $MailFrom -To $MailTo -Subject $Message -Body $Message }
+#    catch { Send-MailMessage -SmtpServer $MailServers[2] -From $MailFrom -To $MailTo -Subject $Mesage -Body $Message }
+#}
 
 Function Test-VMStatus ($VM, $FWResourceGroup) 
 {
