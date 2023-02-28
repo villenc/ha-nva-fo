@@ -62,14 +62,6 @@ $FW1RGName = $env:FWRGNAME     # Set the ResourceGroup that contains FW1
 $FW2RGName = $env:FWRGNAME     # Set the ResourceGroup that contains FW2
 $Monitor = $env:FWMONITOR      # "VMStatus" or "TCPPort" are valid values
 
-#--------------------------------------------------------------------------
-# The parameters below are required if using "TCPPort" mode for monitoring
-#--------------------------------------------------------------------------
-
-$TCPFW1Server = $env:FW1FQDN   # Hostname of the site to be monitored via the primary NVA firewall if using "TCPPort"
-$TCPFW1Port = $env:FW1PORT     # TCP Port of the site to be monitored via the primary NVA firewall if using "TCPPort"
-$TCPFW2Server = $env:FW2FQDN   # Hostname of the site to be monitored via the secondary NVA firewall if using "TCPPort"
-$TCPFW2Port = $env:FW2PORT     # TCP Port of the site to be monitored via the secondary NVA firewall if using "TCPPort"
 
 #--------------------------------------------------------------------------
 # Set the failover and failback behavior for the firewalls
@@ -84,15 +76,6 @@ $IntSleep = $env:FWDELAY       # Delay in seconds between tries
 # Code blocks for supporting functions
 #--------------------------------------------------------------------------
 
-Function Send-AlertMessage ($Message)
-{
-    $MailServers = (Resolve-DnsName -Type MX -Name $env:FWMAILDOMAINMX).NameExchange
-    $MailFrom = $env:FWMAILFROM
-    $MailTo = $env:FWMAILTO
-
-    try { Send-MailMessage -SmtpServer $MailServers[1] -From $MailFrom -To $MailTo -Subject $Message -Body $Message }
-    catch { Send-MailMessage -SmtpServer $MailServers[2] -From $MailFrom -To $MailTo -Subject $Mesage -Body $Message }
-}
 
 Function Test-VMStatus ($VM, $FWResourceGroup) 
 {
@@ -123,7 +106,7 @@ Function Start-Failover
     Set-AzureRmContext -SubscriptionId $SubscriptionID
     $RTable = @()
     $TagValue = $env:FWUDRTAG
-    $Res = Find-AzureRmResource -TagName nva_ha_udr -TagValue $TagValue
+    $Res = Get-AzureRmResource -TagName nva_ha_udr -TagValue $TagValue
 
     foreach ($RTable in $Res)
     {
@@ -165,7 +148,7 @@ Function Start-Failback
   {
     Set-AzureRmContext -SubscriptionId $SubscriptionID
     $TagValue = $env:FWUDRTAG
-    $Res = Find-AzureRmResource -TagName nva_ha_udr -TagValue $TagValue
+    $Res = Get-AzureRmResource -TagName nva_ha_udr -TagValue $TagValue
 
     foreach ($RTable in $Res)
     {
