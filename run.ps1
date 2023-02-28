@@ -45,6 +45,7 @@
 # Input bindings are passed in via param block.
 param($Timer)
 
+
 # The 'IsPastDue' property is 'true' when the current function invocation is later than scheduled.
 if ($Timer.IsPastDue) {
 	Write-Host "PowerShell timer is running late!"
@@ -75,6 +76,7 @@ $IntSleep = $env:FWDELAY       # Delay in seconds between tries
 #--------------------------------------------------------------------------
 # Code blocks for supporting functions
 #--------------------------------------------------------------------------
+
 
 
 Function Test-VMStatus ($VM, $FWResourceGroup) 
