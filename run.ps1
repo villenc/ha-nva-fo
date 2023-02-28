@@ -43,13 +43,10 @@
 #--------------------------------------------------------------------------
 
 # Input bindings are passed in via param block.
-param($myTimer)
-
-# Get the current universal time in the default string format.
-$currentUTCtime = (Get-Date).ToUniversalTime()
+param($Timer)
 
 # The 'IsPastDue' property is 'true' when the current function invocation is later than scheduled.
-if ($myTimer.IsPastDue) {
+if ($Timer.IsPastDue) {
 	Write-Host "PowerShell timer is running late!"
 }
 
